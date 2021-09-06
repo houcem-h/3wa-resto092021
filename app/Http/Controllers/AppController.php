@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 
 class AppController extends Controller
 {
     public function welcome()
     {
-        return view('welcome');
+        $categories = Category::all();
+        return view('welcome', ['categories' => $categories]);
     }
 
     public function about()
