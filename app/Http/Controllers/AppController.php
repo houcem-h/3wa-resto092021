@@ -13,6 +13,6 @@ class AppController extends Controller
 
     public function about()
     {
-        return view('about');
+        return view('about', ['message' => 'This is the about page ...']);
     }
 }

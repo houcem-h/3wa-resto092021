@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    This is the about page
+                    {{ $message }}
                 </div>
             </div>
         </div>
