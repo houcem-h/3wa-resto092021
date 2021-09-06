@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    3W Academy
                 </div>
 
                 <div class="links">
