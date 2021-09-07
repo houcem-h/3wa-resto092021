@@ -2,12 +2,7 @@
 
 @section('content')
 <div>
-    <h2>3W Academy</h2>
-    <ul class="list-group">
-        @foreach ($categories as $category)
-            <li class="list-group-item">{{  $category->Name }}</li>
-        @endforeach
-    </ul>
+    <h2>Welcome to 3W Academy restaurant</h2>
 </div>
 @endsection
 
