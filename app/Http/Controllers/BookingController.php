@@ -41,7 +41,19 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'booking_date' => 'required|date|after:today',
+            'booking_time' => 'required',
+            'number_of_seats' => 'required|integer|min:1|max:12',
+        ]);
+
+        $booking = new Booking();
+        $booking->booking_date = $request->booking_date;
+        $booking->booking_time = $request->booking_time;
+        $booking->number_of_seats = $request->number_of_seats;
+        $booking->user_id = Auth::id();
+        $booking->save();
+        return redirect()->route('bookings.index')->with('success', 'Booking created successfully');
     }
 
     /**

@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show">
+            {{session('success')}}
+        </div>
+    @endif
     <a href="{{ route('bookings.create') }}" class="btn btn-outline-primary btn-lg float-right">Book now!</a>
     <h3>My bookings list</h3>
     <div class="row">
