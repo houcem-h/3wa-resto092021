@@ -15,8 +15,8 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $coming_bookings = Auth::user()->bookings()->comingBookings()->get();
-        $passed_bookings = Auth::user()->bookings()->passedBookings()->get();
+        $coming_bookings = Auth::user()->bookings()->comingBookings()->orderBy('booking_date')->get();
+        $passed_bookings = Auth::user()->bookings()->passedBookings()->orderBy('booking_date', 'desc')->get();
         return view('booking.index', [
             'coming_bookings' => $coming_bookings,
             'passed_bookings' => $passed_bookings
