@@ -15,10 +15,10 @@
 //     return view('welcome');
 // });
 Route::get('/', 'AppController@welcome');
-Route::get('/about', 'AppController@about');
+Route::get('/about', 'AppController@about')->name('about');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('bookings', 'BookingController');
+Route::resource('bookings', 'BookingController')->middleware('auth');
