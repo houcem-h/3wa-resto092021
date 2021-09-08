@@ -15,8 +15,11 @@ class BookingController extends Controller
      */
     public function index()
     {
+        $coming_bookings = Auth::user()->bookings()->comingBookings()->get();
+        $passed_bookings = Auth::user()->bookings()->passedBookings()->get();
         return view('booking.index', [
-            'bookings' => Auth::user()->bookings()->get()
+            'coming_bookings' => $coming_bookings,
+            'passed_bookings' => $passed_bookings
         ]);
     }
 
