@@ -41,11 +41,7 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'booking_date' => 'required|date|after:today',
-            'booking_time' => 'required',
-            'number_of_seats' => 'required|integer|min:1|max:12',
-        ]);
+        $request->validate($this->validationRules());
 
         $booking = new Booking();
         $booking->booking_date = $request->booking_date;
@@ -86,9 +82,17 @@ class BookingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Booking $booking)
     {
-        //
+        $request->validate($this->validationRules());
+        // solution 1
+        // $booking->booking_date = $request->booking_date;
+        // $booking->booking_time = $request->booking_time;
+        // $booking->number_of_seats = $request->number_of_seats;
+        // $booking->save();
+        // solution 2: Mass assignment
+        $booking->update($request->all());
+        return redirect()->route('bookings.show', $booking->id)->with('success', 'Booking updated successfully');
     }
 
     /**
@@ -100,5 +104,14 @@ class BookingController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function validationRules()
+    {
+        return [
+            'booking_date' => 'required|date|after:today',
+            'booking_time' => 'required',
+            'number_of_seats' => 'required|integer|min:1|max:12',
+        ];
     }
 }

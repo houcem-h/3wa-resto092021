@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show">
+        {{session('success')}}
+    </div>
+@endif
 <table class="table table-hover">
     <thead>
         <tr>

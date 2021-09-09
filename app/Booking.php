@@ -13,6 +13,9 @@ class Booking extends Model
 
     protected $dates = ['booking_date'];
 
+    // protected $fillable = ['booking_date', 'booking_time', 'number_of_seats'];
+    protected $guarded = ['user_id'];
+
     public function user()
     {
         return $this->belongsTo('App\User');

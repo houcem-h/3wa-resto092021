@@ -3,8 +3,9 @@
 @section('content')
     <fieldset>
         <legend>Edit Booking</legend>
-        <form action="" method="post">
+        <form action="{{ route('bookings.update', $booking->id) }}" method="post">
             @csrf
+            @method('PATCH')
             <div class="row">
                 <div class="col">
                     <div class="form-group">
@@ -35,7 +36,7 @@
                 </div>
             </div>
             <div class="row">
-                <button type="submit" class="btn btn-outline-primary btn-block">Book now !</button>
+                <button type="submit" class="btn btn-outline-primary btn-block">Update this booking!</button>
             </div>
         </form>
     </fieldset>
