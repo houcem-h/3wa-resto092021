@@ -52,7 +52,7 @@ class BookingController extends Controller
         $booking->user_id = Auth::id();
         $booking->save();
 
-        Mail::to(Auth::user()->email)->send(new NewBooking);
+        Mail::to(Auth::user()->email)->send(new NewBooking($booking));
 
         return redirect()->route('bookings.index')->with('success', 'Booking created successfully');
     }
