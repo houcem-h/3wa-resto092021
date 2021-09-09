@@ -14,11 +14,13 @@
             <ul class="list-group">
                 @if (count($coming_bookings) > 0)
                     @foreach ($coming_bookings as $item)
+                        <a href="{{ route('bookings.show', $item->id) }}">
                             <li class="list-group-item list-group-item-action">
                                 Booking will be <strong>{{ $item->booking_date->format('l, F jS Y') }}</strong>
                                 at <strong>{{date('H:i',strtotime($item->booking_time))}}</strong>
                                 <span class="badge badge-primary badge-pill float-right">{{ $item->number_of_seats }} persons</span>
                             </li>
+                        </a>
                     @endforeach
                 @else
                     <li class="list-group-item list-group-item-action">No coming bookings</li>

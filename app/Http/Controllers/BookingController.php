@@ -64,7 +64,8 @@ class BookingController extends Controller
      */
     public function show($id)
     {
-        //
+        $booking = Booking::with('user')->find($id);
+        return view('booking.show')->with('booking', $booking);
     }
 
     /**
