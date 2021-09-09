@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use App\Mail\NewBooking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
@@ -49,6 +51,9 @@ class BookingController extends Controller
         $booking->number_of_seats = $request->number_of_seats;
         $booking->user_id = Auth::id();
         $booking->save();
+
+        Mail::to(Auth::user()->email)->send(new NewBooking);
+
         return redirect()->route('bookings.index')->with('success', 'Booking created successfully');
     }
 
