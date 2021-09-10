@@ -1,7 +1,6 @@
 @extends('layouts.admin.app')
 
 @section('admin-content')
-
   <h2>Managing Meals</h2>
   <div class="table-responsive">
     <table class="table table-striped table-sm">

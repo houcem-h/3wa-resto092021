@@ -21,12 +21,23 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('bookings', 'BookingController')->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::resource('bookings', 'BookingController');
 
-Route::get('admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware('auth', 'admin');
-Route::resource('admin/meals', 'Admin\MealController')->names(renameAdminRoutes('meals'))->middleware('auth', 'admin');
+    Route::group([
+        'middleware' => 'admin',
+        'prefix' => 'admin',
+        'namespace' => 'Admin'
+    ], function () {
+        Route::get('dashboard', function () {
+            return view('admin.dashboard');
+        })->name('admin.dashboard');
+        Route::resource('meals', 'MealController')->names(renameAdminRoutes('meals'));
+        Route::resource('bookings', 'BookingController')->names(renameAdminRoutes('bookings'));
+        Route::resource('orders', 'OrderController')->names(renameAdminRoutes('orders'));
+    });
+});
+
 
 function renameAdminRoutes($feature)
 {
