@@ -1,6 +1,9 @@
 @extends('layouts.admin.app')
 
 @section('admin-content')
+<a href="{{ route('admin.meals.create') }}" class="btn btn-outline-primary float-right" role="button" aria-pressed="true">
+    <span data-feather="plus-circle"></span> Add new meal
+</a>
   <h2>Managing Meals</h2>
   <div class="table-responsive">
     <table class="table table-striped table-sm">
