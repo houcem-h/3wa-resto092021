@@ -36,7 +36,11 @@ class MealController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate($this->validationRules());
+        $validatedData['photo'] = $request->photo->store('uploads', 'public');
+
+        $meal = Meal::create($validatedData);
+        dd($meal);
     }
 
     /**
@@ -82,5 +86,17 @@ class MealController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function validationRules()
+    {
+        return [
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'photo' => 'required|image',
+            'stock_quantity' => 'required|numeric|min:1',
+            'buy_price' => 'required|numeric|min:0',
+            'sale_price' => 'required|numeric|min:0',
+        ];
     }
 }

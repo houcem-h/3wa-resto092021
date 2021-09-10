@@ -6,7 +6,7 @@
 </a>
 <fieldset>
     <legend>New Meal</legend>
-    <form action="{{ route('admin.meals.store') }}" method="post">
+    <form action="{{ route('admin.meals.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col">
@@ -26,8 +26,7 @@
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea name="description" id="description" value="{{ old('description') }}" class="form-control @error('description') {{'is-invalid'}} @enderror" placeholder="" >
-            </textarea>
+            <textarea name="description" id="description" class="form-control @error('description') {{'is-invalid'}} @enderror" placeholder="" >{{ old('description') }}</textarea>
             @error('description')<div class="text-danger">{{ $message }}</div>@enderror
         </div>
         <div class="row">
@@ -47,9 +46,9 @@
             </div>
             <div class="col">
                 <div class="form-group">
-                  <label for="sell_price">Sell price</label>
-                  <input type="number" name="sell_price" min="0" id="sell_price" value="{{ old('sell_price') }}" class="form-control @error('sell_price') {{'is-invalid'}} @enderror" placeholder="" >
-                  @error('sell_price')<div class="text-danger">{{ $message }}</div>@enderror
+                  <label for="sale_price">Sell price</label>
+                  <input type="number" name="sale_price" min="0" id="sale_price" value="{{ old('sale_price') }}" class="form-control @error('sale_price') {{'is-invalid'}} @enderror" placeholder="" >
+                  @error('sale_price')<div class="text-danger">{{ $message }}</div>@enderror
                 </div>
             </div>
         </div>
