@@ -25,4 +25,18 @@ Route::resource('bookings', 'BookingController')->middleware('auth');
 
 Route::get('admin/dashboard', function () {
     return view('admin.dashboard');
-})->middleware('admin');
+})->middleware('auth', 'admin');
+Route::resource('admin/meals', 'Admin\MealController')->names(renameAdminRoutes('meals'))->middleware('auth', 'admin');
+
+function renameAdminRoutes($feature)
+{
+    return [
+        'store' => 'admin.' . $feature . '.store',
+        'index' => 'admin.' . $feature . '.index',
+        'create' => 'admin.' . $feature . '.create',
+        'destroy' => 'admin.' . $feature . '.destroy',
+        'update' => 'admin.' . $feature . '.update',
+        'show' => 'admin.' . $feature . '.show',
+        'edit' => 'admin.' . $feature . '.edit',
+    ];
+}
