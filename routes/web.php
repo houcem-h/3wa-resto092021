@@ -25,4 +25,4 @@ Route::resource('bookings', 'BookingController')->middleware('auth');
 
 Route::get('admin/dashboard', function () {
     return view('admin.dashboard');
-});
+})->middleware('admin');
